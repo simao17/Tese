@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:animal="http://www.example.org/animal#">
+
+    <owl:Ontology rdf:about="http://www.example.org/animal"/>
+
+    <owl:Class rdf:about="#Animal">
+    <rdfs:label>Animal</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Mammal">
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:label>Mammal</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Bird">
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:label>Bird</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Reptile">
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:label>Reptile</rdfs:label>
+</owl:Class>
+
+<owl:Class rdf:about="#Fish">
+    <rdfs:subClassOf rdf:resource="#Animal"/>
+    <rdfs:label>Fish</rdfs:label>
+</owl:Class>
+
+<owl:ObjectProperty rdf:about="#eats">
+    <rdfs:domain rdf:resource="#Animal"/>
+    <rdfs:range rdf:resource="#Animal"/>
+    <rdfs:label>eats</rdfs:label>
+</owl:ObjectProperty>
+
+</rdf:RDF>
