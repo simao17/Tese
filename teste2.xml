@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+  <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+  <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+  <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+  <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+]>
+<rdf:RDF xmlns="http://example.com/ontology#"
+     xmlns:dc="http://purl.org/dc/elements/1.1/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+     xml:base="http://example.com/ontology"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     rdf:about="">
+  <owl:Ontology rdf:about="">
+    <rdfs:label>Example Ontology</rdfs:label>
+    <dc:description>An example multilingual ontology</dc:description>
+    <dc:creator>Your Name</dc:creator>
+  </owl:Ontology>
+  <!-- Classes -->
+  <owl:Class rdf:about="Person">
+    <rdfs:label xml:lang="en">Person</rdfs:label>
+    <rdfs:label xml:lang="fr">Personne</rdfs:label>
+    <rdfs:label xml:lang="es">Persona</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+  </owl:Class>
+  <owl:Class rdf:about="Book">
+    <rdfs:label xml:lang="en">Book</rdfs:label>
+    <rdfs:label xml:lang="fr">Livre</rdfs:label>
+    <rdfs:label xml:lang="es">Libro</rdfs:label>
+    <rdfs:subClassOf rdf:resource="&owl;Thing"/>
+  </owl:Class>
+  <!-- Properties -->
+  <owl:ObjectProperty rdf:about="hasAuthor">
+    <rdfs:label xml:lang="en">has author</rdfs:label>
+    <rdfs:label xml:lang="fr">a pour auteur</rdfs:label>
+    <rdfs:label xml:lang="es">tiene autor</rdfs:label>
+    <rdfs:domain rdf:resource="#Book"/>
+    <rdfs:range rdf:resource="#Person"/>
+  </owl:ObjectProperty>
+  <!-- Individuals -->
+  <Person rdf:about="JohnDoe">
+    <rdfs:label xml:lang="en">John Doe</rdfs:label>
+    <rdfs:label xml:lang="fr">Jean Dupont</rdfs:label>
+    <rdfs:label xml:lang="es">Juan Pérez</rdfs:label>
+  </Person>
+  <Book rdf:about="Book123">
+    <rdfs:label xml:lang="en">Book 123</rdfs:label>
+    <rdfs:label xml:lang="fr">Livre 123</rdfs:label>
+    <rdfs:label xml:lang="es">Libro 123</rdfs:label>
+  </Book>
+</rdf:RDF>
