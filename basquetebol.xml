@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+	xml:base="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol"
+	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"	ontologyIRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol">
+	<Prefix name="" IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol"/>
+	<Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+	<Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+	<Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+	<Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+	<Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Schroder"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Brown"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/James"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Booker"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Walker"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Payne"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Carter"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/aauav"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Davis"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Bridges"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Pop"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Craig"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Ayton"/>
+	</Declaration>
+
+	<Declaration>
+		<NamedIndividual IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/uminho"/>
+	</Declaration>
+
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/TwentyFourSecond"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Blocking"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Game"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Smallforward"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Slapping"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Charging"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Player"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Position"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Point"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Goaltending"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Referee"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Travelling"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Flagrant"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Intentional"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Technical"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/HeldBall"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Powerforward"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Freethrow"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/EightSecond"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Hitting"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/DoubleDribble"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/IllegalScreen"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Team"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/ShootingGuard"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Holding"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Violation"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Pushing"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/PointGuard"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/BackcourtViolation"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Coach"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/TwoPointer"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Carrying"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Center"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Foul"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/FiveSecond"/>
+	</Declaration>
+	<Declaration>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/ThreePointer"/>
+	</Declaration>
+	<Declaration>
+		<ObjectProperty IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/playsAgainst"/>
+	</Declaration>
+
+	<Declaration>
+		<ObjectProperty IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/playsFor"/>
+	</Declaration>
+
+	<Declaration>
+		<ObjectProperty IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/playsAs"/>
+	</Declaration>
+
+	<Declaration>
+		<ObjectProperty IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/coaches"/>
+	</Declaration>
+
+	<Declaration>
+		<ObjectProperty IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/whistles"/>
+	</Declaration>
+
+	<SubClassOf>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Charging"/>
+		<Class IRI="http://www.semanticweb.org/simia/ontologies/2020/10/Basquetebol/Foul"/>
+	</SubClassOf>
+	
+</Ontology>
