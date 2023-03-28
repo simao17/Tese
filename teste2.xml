@@ -45,6 +45,7 @@
     <rdfs:label xml:lang="en">John Doe</rdfs:label>
     <rdfs:label xml:lang="fr">Jean Dupont</rdfs:label>
     <rdfs:label xml:lang="es">Juan Pérez</rdfs:label>
+    <rdfs:comment xml:lang="en">A human-readable name for the subject.</rdfs:comment>
   </Person>
   <Book rdf:about="Book123">
     <rdfs:label xml:lang="en">Book 123</rdfs:label>
