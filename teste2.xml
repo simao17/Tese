@@ -42,7 +42,7 @@
   </owl:ObjectProperty>
   <!-- Individuals -->
   <Person rdf:about="JohnDoe">
-    <rdfs:label xml:lang="en">John Doe</rdfs:label>
+    <rdfs:label xml:lang="en">Jhon Doe</rdfs:label>
     <rdfs:label xml:lang="fr">Jean Dupont</rdfs:label>
     <rdfs:label xml:lang="es">Juan Pérez</rdfs:label>
     <rdfs:comment xml:lang="en">A human-readable name for the subject.</rdfs:comment>
@@ -51,5 +51,6 @@
     <rdfs:label xml:lang="en">Book 123</rdfs:label>
     <rdfs:label xml:lang="fr">Livre 123</rdfs:label>
     <rdfs:label xml:lang="es">Libro 123</rdfs:label>
+    <rdfs:comment></rdfs:comment>
   </Book>
 </rdf:RDF>
