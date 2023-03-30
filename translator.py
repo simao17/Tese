@@ -8,7 +8,6 @@ auth_key = '8b2ab6f0-50c1-4212-8be6-ef0f49f583e4:fx'
 translator = deepl.Translator(auth_key)
 
 available_langs = {
-    "mt": "maltese",
     "en": "english",
     "de": "german",
     "bg": "bulgarian",
@@ -28,7 +27,6 @@ available_langs = {
     "zh": "chinese",
     "fr": "french",
     "cs": "czech",
-    "lo": "laotian",
     "sv": "swedish",
     "lv": "latvian",
     "et": "estonian",
@@ -36,7 +34,29 @@ available_langs = {
 }
 
 deepl_langs = {
-    "pt": "pt-pt"
+    "pt": "pt-pt",
+    "en": "en-gb",
+    "de": "de",
+    "bg": "bg",
+    "pl": "pl",
+    "hu": "hu",
+    "ro": "ro",
+    "ru": "ru",
+    "nl": "nl",
+    "sk": "sk",
+    "el": "el",
+    "sl": "sl",
+    "da": "da",
+    "it": "it",
+    "es": "es",
+    "fi": "fi",
+    "zh": "zh",
+    "sv": "sv",
+    "lv": "lv",
+    "et": "et",
+    "cs": "cs",
+    "fr": "fr",
+    "ja": "ja"
 }
 
 langs_pairs = [f"{key} - {value}" for key, value in available_langs.items()]
