@@ -1,7 +1,8 @@
 from rdflib import Graph, Literal, Namespace, RDF, RDFS, URIRef
-def generator(labels, comments, original):
-    g = Graph()
-    g.parse(original)
+def generator(labels, comments, g):
+    #g = Graph()
+    #g.parse(data=owl_file.read(), format='xml')
+
     for item_uri, data in labels.items():
         uri = URIRef(item_uri)
         for label_lang, label in data.items():

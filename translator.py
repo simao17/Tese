@@ -4,7 +4,7 @@ import deepl
 from deep_translator import LingueeTranslator
 import re
 
-def translator():
+def translator(g, lang, target_lang):
     auth_key = '8b2ab6f0-50c1-4212-8be6-ef0f49f583e4:fx'
     translator = deepl.Translator(auth_key)
 
@@ -59,21 +59,21 @@ def translator():
         "fr": "fr",
         "ja": "ja"
     }
-
+    """
     langs_pairs = [f"{key} - {value}" for key, value in available_langs.items()]
 
     prompt = "From the following list, select the language you want to add to the ontology:\n" + "\n".join(langs_pairs) + "\n\nInsert language(the short way): "
     # Prompt the user to enter the path to the OWL ontology file    
-    owl_file_path = input("Enter the path to your OWL ontology file: ")
     lang = input("If applicable enter the language of the ontology in ISO 639-1 format (https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes): ")
     target_lang = input(prompt)
 
     while target_lang not in available_langs.keys():
         target_lang = input("Something went wrong. Insert the language again and please be careful to put it in the short format: ")
+    """
 
     # Load the OWL ontology into an rdflib Graph object
-    g = Graph()
-    g.parse(owl_file_path)
+    #g = Graph()
+    #g.parse(data=owl_file.read(), format='xml')
 
     # Define the RDF namespaces used in the OWL ontology
     RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
@@ -149,7 +149,7 @@ def translator():
                     translated_label = translator.translate_text(label, source_lang=lang, target_lang=deepl_langs[target_lang]).text
                 translations_label_dict[item_uri][target_lang] = translated_label
                 break
-    return(translations_label_dict, translations_comments_dict, owl_file_path)
+    return(translations_label_dict, translations_comments_dict)
 
     '''
     for item_uri, data in translations_label_dict.items():
