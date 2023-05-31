@@ -13,4 +13,6 @@ def generator(labels, comments, g):
         for comment_lang, comment in data.items():
             g.add((uri, RDFS.comment, Literal(comment, lang=comment_lang)))
 
-    g.serialize("./modified_teste2.owl", format="xml")
+    xml_data = g.serialize(format='xml')
+    #g.serialize("./modified_teste2.owl", format="xml")
+    return xml_data

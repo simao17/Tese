@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://example.com/Book">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Book</rdfs:label>
+    <rdfs:label xml:lang="fr">Livre</rdfs:label>
+    <rdfs:label xml:lang="es">Libro</rdfs:label>
+    <rdfs:label xml:lang="nl">boek</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/ontology">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label>Example Ontology</rdfs:label>
+    <rdfs:label xml:lang="nl">Voorbeeld Ontologie</rdfs:label>
+    <dc:description>An example multilingual ontology</dc:description>
+    <dc:creator>Your Name</dc:creator>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/Book123">
+    <rdf:type rdf:resource="http://example.com/ontology#Book"/>
+    <rdfs:label xml:lang="en">Book 123</rdfs:label>
+    <rdfs:label xml:lang="fr">Livre 123</rdfs:label>
+    <rdfs:label xml:lang="es">Libro 123</rdfs:label>
+    <rdfs:label xml:lang="nl">Boek 123</rdfs:label>
+    <rdfs:comment></rdfs:comment>
+    <rdfs:comment xml:lang="nl">Een menselijk leesbare naam voor het onderwerp.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/JohnDoe">
+    <rdf:type rdf:resource="http://example.com/ontology#Person"/>
+    <rdfs:label xml:lang="en">Jhon Doe</rdfs:label>
+    <rdfs:label xml:lang="fr">Jean Dupont</rdfs:label>
+    <rdfs:label xml:lang="es">Juan Pérez</rdfs:label>
+    <rdfs:label xml:lang="nl">Jhon Doe</rdfs:label>
+    <rdfs:comment xml:lang="en">A human-readable name for the subject.</rdfs:comment>
+    <rdfs:comment xml:lang="nl">Een menselijk leesbare naam voor het onderwerp.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/hasAuthor">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:label xml:lang="en">has author</rdfs:label>
+    <rdfs:label xml:lang="fr">a pour auteur</rdfs:label>
+    <rdfs:label xml:lang="es">tiene autor</rdfs:label>
+    <rdfs:label xml:lang="nl">heeft auteur</rdfs:label>
+    <rdfs:domain rdf:resource="http://example.com/ontology#Book"/>
+    <rdfs:range rdf:resource="http://example.com/ontology#Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.com/Person">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Person</rdfs:label>
+    <rdfs:label xml:lang="fr">Personne</rdfs:label>
+    <rdfs:label xml:lang="es">Persona</rdfs:label>
+    <rdfs:label xml:lang="nl">persoon</rdfs:label>
+    <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+  </rdf:Description>
+</rdf:RDF>
