@@ -79,18 +79,60 @@ def translator(g, lang, target_lang):
     RDF = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
     RDFS = Namespace("http://www.w3.org/2000/01/rdf-schema#")
     OWL = Namespace("http://www.w3.org/2002/07/owl#")
+    rdf = Namespace("http://www.w3.org/1999/02/22-rdf-syntax-ns#")
+    xml = Namespace("http://www.w3.org/XML/1998/namespace")
 
     # Query the rdflib Graph for all items and their associated labels and comments
     query = """
-    SELECT ?item ?label ?comment
+    SELECT ?item ?label ?comment ?lineContent ?lineURI ?lineLang
     WHERE {
-    ?item rdfs:label ?label .
-    OPTIONAL { ?item rdfs:comment ?comment }
-    FILTER(lang(?label) = "" || langMatches(lang(?label), "*"))
-    FILTER(!bound(?comment) || lang(?comment) = "" || langMatches(lang(?comment), "*"))
+        {
+            SELECT ?item ?label ?comment
+            WHERE {
+                ?item rdfs:label ?label .
+                OPTIONAL { ?item rdfs:comment ?comment }
+                FILTER(lang(?label) = "" || langMatches(lang(?label), "*"))
+                FILTER(!bound(?comment) || lang(?comment) = "" || langMatches(lang(?comment), "*"))
+            }
+        }
+        UNION
+        {
+            ?item ?p ?o .
+            FILTER(isLiteral(?o) && lang(?o) != "")
+            BIND(CONCAT(str(?p), " ", str(?o)) AS ?lineContent)
+            BIND(str(?item) AS ?lineURI)
+            BIND(lang(?o) AS ?lineLang)
+            BIND(COALESCE(?label, "None") AS ?label)
+            BIND(COALESCE(?comment, "None") AS ?comment)
+        }
     }
-    """
+"""
+
+
+
+
     extracted = g.query(query, initNs={"rdf": RDF, "rdfs": RDFS, "owl": OWL})
+
+    with open("result.txt", "w") as file:
+        for row in extracted:
+            item_uri = row['item']
+            label_content = row['label']
+            comment_content = row['comment']
+            line_content = row['lineContent']
+            line_uri = row['lineURI']
+            line_lang = row['lineLang']
+
+            if line_content is not None:
+                line_content = line_content.split(' ', 1)[1]    
+
+            # Write the information to the file
+            file.write("Item URI: {}\n".format(item_uri))
+            file.write("Label Content: {}\n".format(label_content))
+            file.write("Comment Content: {}\n".format(comment_content))
+            file.write("Line Content: {}\n".format(line_content))
+            file.write("Line URI: {}\n".format(line_uri))
+            file.write("Line Language: {}\n".format(line_lang))
+            file.write("------------------------\n")
 
     label_dict = {}
     for result in extracted:
@@ -105,6 +147,8 @@ def translator(g, lang, target_lang):
             comment_lang = result[2].language or lang       # Set comment_lang to lang if it does'nt have any language associated
             label_dict[item_uri]['comments'].add((result[2], comment_lang))         # Add comment to the set
         label_dict[item_uri][label_lang] = result[1]        # Assign label to corresponding language
+
+    
 
     """for item_uri, results in label_dict.items():
         print(f"Item {item_uri}:")
