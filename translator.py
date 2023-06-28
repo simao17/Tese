@@ -84,35 +84,18 @@ def translator(g, lang, target_lang):
 
     # Query the rdflib Graph for all items and their associated labels and comments
     query = """
-    SELECT ?item ?label ?comment ?lineContent ?lineURI ?lineLang
+    SELECT ?item ?label ?comment
     WHERE {
-        {
-            SELECT ?item ?label ?comment
-            WHERE {
-                ?item rdfs:label ?label .
-                OPTIONAL { ?item rdfs:comment ?comment }
-                FILTER(lang(?label) = "" || langMatches(lang(?label), "*"))
-                FILTER(!bound(?comment) || lang(?comment) = "" || langMatches(lang(?comment), "*"))
-            }
-        }
-        UNION
-        {
-            ?item ?p ?o .
-            FILTER(isLiteral(?o) && lang(?o) != "")
-            BIND(CONCAT(str(?p), " ", str(?o)) AS ?lineContent)
-            BIND(str(?item) AS ?lineURI)
-            BIND(lang(?o) AS ?lineLang)
-            BIND(COALESCE(?label, "None") AS ?label)
-            BIND(COALESCE(?comment, "None") AS ?comment)
-        }
+    ?item rdfs:label ?label .
+    OPTIONAL { ?item rdfs:comment ?comment }
+    FILTER(lang(?label) = "" || langMatches(lang(?label), "*"))
+    FILTER(!bound(?comment) || lang(?comment) = "" || langMatches(lang(?comment), "*"))
     }
-"""
-
-
-
+    """
 
     extracted = g.query(query, initNs={"rdf": RDF, "rdfs": RDFS, "owl": OWL})
 
+    """
     with open("result.txt", "w") as file:
         for row in extracted:
             item_uri = row['item']
@@ -133,24 +116,29 @@ def translator(g, lang, target_lang):
             file.write("Line URI: {}\n".format(line_uri))
             file.write("Line Language: {}\n".format(line_lang))
             file.write("------------------------\n")
-
+    """
     label_dict = {}
     for result in extracted:
-        item_uri = result[0]
-        label_lang = result[1].language
+        item_uri = result['item']
+        label_lang = result['label'].language
+        #line_content = result['lineContent']
+        #line_lang = result['lineLang']
         if str(label_lang) == 'None':                        
             label_lang = lang                               # Set label_lang to lang if it does'nt have any language associated
         if item_uri not in label_dict:
             label_dict[item_uri] = {}
             label_dict[item_uri]['comments'] = set()
+            #label_dict[item_uri]['lines'] = {}
         if result[2] is not None:                           # result[2] corresponds to the comment extracted
             comment_lang = result[2].language or lang       # Set comment_lang to lang if it does'nt have any language associated
             label_dict[item_uri]['comments'].add((result[2], comment_lang))         # Add comment to the set
+        #if line_content is not None:
+            #label_dict[item_uri]['lines'][line_content] = line_lang
         label_dict[item_uri][label_lang] = result[1]        # Assign label to corresponding language
 
     
 
-    """for item_uri, results in label_dict.items():
+    for item_uri, results in label_dict.items():
         print(f"Item {item_uri}:")
         if 'comments' in results:
             for comment, comment_lang in results['comments']:
@@ -158,21 +146,24 @@ def translator(g, lang, target_lang):
         for labellang, label in results.items():
             if labellang != 'comments':
                 print(f"  {labellang}:")
-                print(f"    {label}")"""
+                print(f"    {label}")
 
     translations_label_dict={}
     translations_comments_dict={}
+    translations_lines_dict = {}
     #Access every comment and every label to translate them
     for item_uri, item_data in label_dict.items():
         translations_label_dict[item_uri]={}
         translations_comments_dict[item_uri]={}
+        translations_lines_dict[item_uri] = {}
+        
 
         #Translate Comment
         if item_data['comments']:
             # Get first comment
             comment, comment_lang = next(iter(item_data['comments']))   
             #translate comment  
-            if(len(comment)!=0):
+            if(len(comment)!=0 and comment!='None'):
                 translated_comment = translator.translate_text(comment, source_lang=comment_lang, target_lang=deepl_langs[target_lang]).text
             # Add translated comment to dictionary
             translations_comments_dict[item_uri][target_lang] = translated_comment
@@ -194,17 +185,3 @@ def translator(g, lang, target_lang):
                 translations_label_dict[item_uri][target_lang] = translated_label
                 break
     return(translations_label_dict, translations_comments_dict)
-
-    '''
-    for item_uri, data in translations_label_dict.items():
-        print(f"Item {item_uri}:")
-        for label_lang, label in data.items():
-            print(f"  {label_lang}:")
-            print(f"    {label}")
-
-    for item_uri, data in translations_comments_dict.items():
-        print(f"Item {item_uri}:")
-        for comment_lang, comment in data.items():
-            print(f"  {comment_lang}:")
-            print(f"    {comment}")
-    '''
