@@ -1,53 +1,117 @@
 import re
+import deepl
+from deep_translator import LingueeTranslator
 
-xml_file_path = "./teste4.xml"
+def translator(xml_file, orgn_lang, target_lang):
+    auth_key = '8b2ab6f0-50c1-4212-8be6-ef0f49f583e4:fx'
+    translator = deepl.Translator(auth_key)
 
-with open(xml_file_path, "r", encoding="utf-8") as file:
-    lines = file.readlines()
+    available_langs = {
+        "en": "english",
+        "de": "german",
+        "bg": "bulgarian",
+        "pl": "polish",
+        "pt": "portuguese",
+        "hu": "hungarian",
+        "ro": "romanian",
+        "ru": "russian",
+        "nl": "dutch",
+        "sk": "slovakian",
+        "el": "greek",
+        "sl": "slovenian",
+        "da": "danish",
+        "it": "italian",
+        "es": "spanish",
+        "fi": "finnish",
+        "zh": "chinese",
+        "fr": "french",
+        "cs": "czech",
+        "sv": "swedish",
+        "lv": "latvian",
+        "et": "estonian",
+        "ja": "japanese"
+    }
 
-line_number = 0
+    deepl_langs = {
+        "pt": "pt-pt",
+        "en": "en-gb",
+        "de": "de",
+        "bg": "bg",
+        "pl": "pl",
+        "hu": "hu",
+        "ro": "ro",
+        "ru": "ru",
+        "nl": "nl",
+        "sk": "sk",
+        "el": "el",
+        "sl": "sl",
+        "da": "da",
+        "it": "it",
+        "es": "es",
+        "fi": "fi",
+        "zh": "zh",
+        "sv": "sv",
+        "lv": "lv",
+        "et": "et",
+        "cs": "cs",
+        "fr": "fr",
+        "ja": "ja"
+    }
 
-for line in lines:
-    line_number += 1
+    xml_file_path = "./teste4.xml"
 
-    if "<rdfs:label" in line:
-        uri_start = line.find("<") + 1
-        uri_end = 10
-        uri = "rdfs:label"
+    with open(xml_file_path, "r", encoding="utf-8") as file:
+        lines = file.readlines()
 
-        lang_match = re.search(r'xml:lang="([^"]*)"', line)
-        lang = lang_match.group(1) if lang_match else None
+    line_number = 0
+    line_info = []
 
-        content_start = line.find(">", uri_end) + 1
-        content_end = line.find("</rdfs:label>")
-        content = line[content_start:content_end].strip() or None
+    for line in lines:
+        line_number += 1
 
-        print(f"Line {line_number}: URI: {uri}, Language: {lang}, Content: {content}")
+        if "<rdfs:label" in line:
+            id_start = line.find("<") + 1
+            id_end = 10
+            id = "rdfs:label"
 
-    elif "<rdfs:comment" in line:
-        uri_start = line.find("<") + 1
-        uri_end = 12
-        uri = "rdfs:comment"
+            lang_match = re.search(r'xml:lang="([^"]*)"', line)
+            lang = lang_match.group(1) if lang_match else orgn_lang
 
-        lang_match = re.search(r'xml:lang="([^"]*)"', line)
-        lang = lang_match.group(1) if lang_match else None
+            content_start = line.find(">", id_end) + 1
+            content_end = line.find("</rdfs:label>")
+            content = line[content_start:content_end].strip() or None
 
-        content_start = line.find(">", uri_end) + 1
-        content_end = line.find("</rdfs:comment>")
-        content = line[content_start:content_end].strip() or None
+            line_info.append((line_number, id, lang, content))
 
-        print(f"Line {line_number}: URI: {uri}, Language: {lang}, Content: {content}")
+        elif "<rdfs:comment" in line:
+            id_start = line.find("<") + 1
+            id_end = 12
+            id = "rdfs:comment"
 
-    elif "xml:lang=" in line:
-        uri_start = line.find("<") + 1
-        uri_end = line.find(" ", uri_start)
-        uri = line[uri_start:uri_end]
+            lang_match = re.search(r'xml:lang="([^"]*)"', line)
+            lang = lang_match.group(1) if lang_match else None
 
-        lang_match = re.search(r'xml:lang="([^"]*)"', line)
-        lang = lang_match.group(1) if lang_match else None
+            content_start = line.find(">", id_end) + 1
+            content_end = line.find("</rdfs:comment>")
+            content = line[content_start:content_end].strip() or None
 
-        content_start = line.find(">", uri_end) + 1
-        content_end = line.find("</")
-        content = line[content_start:content_end].strip() or None
+            line_info.append((line_number, id, lang, content))
 
-        print(f"Line {line_number}: URI: {uri}, Language: {lang}, Content: {content}")
+        elif "xml:lang=" in line:
+            id_start = line.find("<") + 1
+            id_end = line.find(" ", id_start)
+            id = line[id_start:id_end]
+
+            lang_match = re.search(r'xml:lang="([^"]*)"', line)
+            lang = lang_match.group(1) if lang_match else None
+
+            content_start = line.find(">", id_end) + 1
+            content_end = line.find("</")
+            content = line[content_start:content_end].strip() or None
+
+            line_info.append((line_number, id, lang, content))
+        
+    # Iterate over the line_info list
+    for line in line_info:
+        line_number, id, lang, content = line
+        print(f"Line {line_number}: ID: {id}, Language: {lang}, Content: {content}")
