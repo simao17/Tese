@@ -59,15 +59,15 @@ def translator(xml_file, orgn_lang, target_lang):
     }
 
     
-    xml_file_path = "./teste4.xml"
+    #xml_file_path = "./teste4.xml"
 
-    with open(xml_file, "r", encoding="utf-8") as file:
-        lines = file.readlines()
+    #with xml_file as file:
+    #    lines = file.readlines()
 
     line_number = 0
     line_info = []
 
-    for line in lines:
+    for line in xml_file:
         line_number += 1
 
         if "<rdfs:label" in line:
