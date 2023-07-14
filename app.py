@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request, jsonify, send_file
-from rdflib import Graph
-from translator import translator
-from ranking import ranker
-from translation_choice import choicer
-from output_generator import generator
-import main3
+import main
 import codecs
 import tempfile
 import io
+import logging
+import sys
 
 app = Flask(__name__)
+
+# Adjust Flask's logging level to capture only necessary logs
+app.logger.setLevel(logging.INFO)
+app.logger.handlers = [logging.StreamHandler(sys.stdout)]
 
 @app.route('/')
 def index():
@@ -25,7 +26,7 @@ def process():
     file_content = io.StringIO(xml_file.stream.read().decode('utf-8'))
     lines = file_content.readlines()
 
-    result_xml = main3.process(lines, original_lang, target_lang)
+    result_xml = main.process(lines, original_lang, target_lang)
 
     result_file_path = 'result.xml'
     with codecs.open(result_file_path, 'w', encoding='utf-8') as file:

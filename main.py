@@ -1,13 +1,12 @@
-from translator import translator
+from translator2 import translator
 from ranking import ranker
 from translation_choice import choicer
-from teste import add_labels_to_ontology
-from output_generator import generator
+from output_generator2 import generator
 
-def process(graph, original_lang, target_lang, xml_file):
-    labels, comments= translator(graph, original_lang, target_lang)
-    labels2, comments2 = ranker(labels, comments)
-    labels3, comments3 = choicer(labels2,comments2)
-    #final_ontology = add_labels_to_ontology(labels3, xml_file)
-    final_ontology = generator(labels3, comments3, graph)
+def process(xml_file, original_lang, target_lang):
+    translated_data = translator(xml_file, original_lang, target_lang)
+    translated_data_ranked = ranker(translated_data)
+    translated_data_chose = choicer(translated_data_ranked)
+    final_ontology = generator(translated_data_chose, xml_file, target_lang)
+
     return final_ontology

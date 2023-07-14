@@ -71,7 +71,6 @@ def translator(xml_file, orgn_lang, target_lang):
         line_number += 1
 
         if "<rdfs:label" in line:
-            id_start = line.find("<") + 1
             id_end = 10
             id = "rdfs:label"
 
@@ -85,12 +84,11 @@ def translator(xml_file, orgn_lang, target_lang):
             line_info.append((line_number, id, lang, content))
 
         elif "<rdfs:comment" in line:
-            id_start = line.find("<") + 1
             id_end = 12
             id = "rdfs:comment"
 
             lang_match = re.search(r'xml:lang="([^"]*)"', line)
-            lang = lang_match.group(1) if lang_match else None
+            lang = lang_match.group(1) if lang_match else orgn_lang
 
             content_start = line.find(">", id_end) + 1
             content_end = line.find("</rdfs:comment>")
@@ -104,7 +102,7 @@ def translator(xml_file, orgn_lang, target_lang):
             id = line[id_start:id_end]
 
             lang_match = re.search(r'xml:lang="([^"]*)"', line)
-            lang = lang_match.group(1) if lang_match else None
+            lang = lang_match.group(1) if lang_match else None    #just in case something goes wrong with the re.search
 
             content_start = line.find(">", id_end) + 1
             content_end = line.find("</")
