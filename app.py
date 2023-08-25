@@ -21,12 +21,13 @@ def process():
     xml_file = request.files['xml_file']
     original_lang = request.form['original_lang']
     target_lang = request.form['target_lang']
+    ontology_context = request.form['ontology_context']
 
     # Open the file and read the lines
     file_content = io.StringIO(xml_file.stream.read().decode('utf-8'))
     lines = file_content.readlines()
 
-    result_xml = main.process(lines, original_lang, target_lang)
+    result_xml = main.process(lines, original_lang, target_lang, ontology_context)
 
     result_file_path = 'result.xml'
     with codecs.open(result_file_path, 'w', encoding='utf-8') as file:
