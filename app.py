@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, jsonify, send_file
 import main
 import codecs
-import tempfile
 import io
 import logging
 import sys
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -62,6 +62,21 @@ def process():
         file.write(result_xml)
 
     return send_file(result_file_path, as_attachment=True)
+
+@app.route('/download_logfile', methods=['GET'])
+def download_logfile():
+    program_log_path = './program.log'
+
+    current_datetime = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+
+    download_filename = f'program_{current_datetime}.log'
+
+    return send_file(
+        program_log_path,
+        as_attachment=True,
+        download_name=download_filename,
+        mimetype='text/plain'
+    )
 
 if __name__ == '__main__':
     app.run(debug=True)

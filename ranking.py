@@ -53,10 +53,11 @@ def ranker(translated_lines, ontology_context, target_lang):
     updated_lines = []
     for line in translated_lines:
         line_number, id, lang, content, translated = line
+        print(translated)
         if isinstance(translated, list):
             new_content = ontology_context + ', ' + content.lower()
             translation = translator.translate_text(new_content, source_lang=lang, target_lang=deepl_langs[target_lang]).text
-            print(translation)
+            #print(translation)
             best_translation = translation.split(", ")[1]
             if best_translation in translated: 
                 logger.info(f"Multiple translations found for line {line_number} for {content}. Choosing '{best_translation}' from options {translated}.")

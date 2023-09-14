@@ -111,8 +111,10 @@
         }
 
         .download-container {
-            margin-top: 20px;
-            text-align: center;
+            max-width: 95%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
         }
 
         button[type="submit"] {
@@ -211,7 +213,7 @@
     </div>
     <div class="box" id="result-display"></div>
 </div>
-<div id="download-container" style="margin-left: 90%;"></div>
+<div id="download-container" class="download-container"></div>
 <script>
     var fileInput = document.getElementById('xml-file');
     fileInput.addEventListener('change', function(e) {
@@ -241,13 +243,22 @@
         downloadContainer.innerHTML = '';
 
         // Create and append the download button
-        var downloadButton = document.createElement('button');
-        downloadButton.innerText = 'Download XML';
-        downloadButton.addEventListener('click', function() {
-            downloadFile(xmlText, 'result.xml');
+        var downloadXmlButton = document.createElement('button');
+        downloadXmlButton.innerText = 'Download XML';
+        downloadXmlButton.addEventListener('click', function() {
+            const currentDatetime = getCurrentDatetime();
+            downloadFile(xmlText, `result_${currentDatetime}.xml`);
         });
 
-        downloadContainer.appendChild(downloadButton);
+        var downloadLogfileButton = document.createElement('button');
+        downloadLogfileButton.innerText = 'Download LogFile';
+        downloadLogfileButton.addEventListener('click', function() {
+            // Trigger the download of the program.log file
+            window.location.href = '/download_logfile';
+        });
+
+        downloadContainer.appendChild(downloadXmlButton);
+        downloadContainer.appendChild(downloadLogfileButton);
     }
 
     function downloadFile(content, filename) {
@@ -301,6 +312,18 @@
         sortSelectOptions('target-lang');
         sortSelectOptions('original-lang');
     });
+
+    function getCurrentDatetime() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = (now.getMonth() + 1).toString().padStart(2, '0');
+        const day = now.getDate().toString().padStart(2, '0');
+        const hours = now.getHours().toString().padStart(2, '0');
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
 </script>
 </body>
 </html>

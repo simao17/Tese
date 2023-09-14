@@ -134,6 +134,7 @@ def translator(xml_file, orgn_lang, target_lang):
                             translated_label = LingueeTranslator(source=available_langs[lang], target=available_langs[target_lang]).translate(content, return_all=True)
                         except:
                             translated_label = translator.translate_text(content, source_lang=lang, target_lang=deepl_langs[target_lang]).text
+                            print("O Linguee está down")
                 else:
                     #else, use deepl to translate, as it works better for sentences, and already should translate correctly depending on the context
                     translated_label = translator.translate_text(content, source_lang=lang, target_lang=deepl_langs[target_lang]).text
@@ -147,8 +148,8 @@ def translator(xml_file, orgn_lang, target_lang):
         
         last_line_number, last_id, last_lang, last_content = line
 
-    for line in translated_lines:
-        a, b, c, d, e = line
-        print(f"Line number: {a}, ID: {b}, Lang: {c}, Content: {d}, Translated Content: {e}")
+    #for line in translated_lines:
+        #a, b, c, d, e = line
+        #print(f"Line number: {a}, ID: {b}, Lang: {c}, Content: {d}, Translated Content: {e}")
 
     return(translated_lines)
